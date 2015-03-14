@@ -1,0 +1,47 @@
+
+<h3>Up Apks</h3>
+<p></p>
+{% if object_list %}
+    <table id="apks">
+        <tr>
+            <th>Url</th>
+            <th>状态</th>
+            <th>标签</th>
+            <th>用户</th>
+            <th>时间</th>
+        </tr>    
+        {% for upfile in object_list %}
+            <tr>
+                <td>
+                	{% if upfile.signed %}
+                		<a href="{{ upfile.signed.url }}" class="see_detail" type="application/vnd.android.package-archive">{{ upfile.path }}</a>
+                	{% endif %}
+                </td>            
+                <td>{{ upfile.status }}</td>
+                <td>{{ upfile.label }}</td>
+                <td>{{ upfile.user }}</td>
+                <td>{{ upfile.up_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+    	<p></p>
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+    
+    <p>No apks found!!! :(</p>
+{% endif %}
