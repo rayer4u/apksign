@@ -8,5 +8,4 @@ urlpatterns = patterns('',
 #     url(r'^$', views.index, name='index'),
     url(r'^$', upload, name='upload'),
     url(r'^all', AllView.as_view(), name='all'), 
-    url(r'^progressbarupload/', include('progressbarupload.urls')),
 )

@@ -1,4 +1,4 @@
-{% extends "apksign/base.html" %}
+{% extends "base.html" %}
 {% block nav-left %}
  			<a class="navbar-brand" href="#">Up Apks</a>
 {% endblock %} 
@@ -9,10 +9,10 @@
    <div class="panel panel-default">
     <table class="table table-bordered">
         <tr class="info">
-            <th class="col-xs-8 col-sm-7">Url</th>
+            <th class="col-xs-7 col-sm-6">Url</th>
+            <th class="col-xs-4 col-sm-2">标签</th>
+            <th class="col-xs-1 col-sm-1">用户</th>
             <th class="hidden-xs col-sm-1">状态</th>
-            <th class="col-xs-4 col-sm-1">标签</th>
-            <th class="hidden-xs col-sm-1">用户</th>
             <th class="hidden-xs col-sm-2">时间</th>
         </tr>    
         {% for upfile in object_list %}
@@ -22,9 +22,9 @@
                 		<a href="{{ upfile.signed.url }}" class="see_detail" type="application/vnd.android.package-archive">{{ upfile.path }}</a>
                 	{% endif %}
                 </td>            
-                <td class="hidden-xs">{{ upfile.status }}</td>
                 <td>{{ upfile.label }}</td>
-                <td class="hidden-xs">{{ upfile.user }}</td>
+                <td>{{ upfile.user }}</td>
+                <td class="hidden-xs">{{ upfile.status }}</td>
                 <td class="hidden-xs">{{ upfile.up_date }}</td>
             </tr>
         {% endfor %}
@@ -37,13 +37,13 @@
                 {% if page_obj.has_previous %}
                   <li><a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a></li>
                 {% else %}
-                  <li class="disabled"><a href="#">previous</a></li>
+                  <li class="disabled"><a href="">previous</a></li>
                 {% endif %}
                     <li>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</li>
                 {% if page_obj.has_next %}
                     <li><a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a></li>
                 {% else %}
-                  <li class="disabled"><a href="#">next</a></li>                    
+                  <li class="disabled"><a href="">next</a></li>                    
                 {% endif %}
             </ul>
         </nav>
