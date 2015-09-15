@@ -1,0 +1,36 @@
+ {% load staticfiles %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="{% static 'js/bootstrap.min.css' %}">
+
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script type="text/javascript" src="{% static "js/jquery-2.1.1.min.js" %}"></script>
+
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+
+  <style type="text/css">      
+  body { padding-top: 70px; }
+  .breadcrumb {
+    margin-bottom: 0px; 
+  }
+  .navbar-right {
+    margin-right:0px;
+  }
+  .navbar-header-nav {
+    padding:0px;
+    margin:0px;
+  }
+  .navbar-header-nav>li {
+    float: left;
+  }
+  .standard-description {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: block;
+}
+  </style>  

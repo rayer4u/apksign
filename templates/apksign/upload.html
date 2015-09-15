@@ -8,9 +8,15 @@
     {% progress_bar_media %}
     <script>
     function fun_sucs(data) {
-        $('#result').append(JSON.stringify(data));
-    }
-    </script>
+    	if (data['success']) {
+    		window.alert('成功');
+    	}
+    	else {
+    		window.alert(JSON.stringify(data));
+    	}
+    	window.location.reload();
+    }    
+    </script>   
 </head>
 
 <body>
@@ -20,7 +26,6 @@
 		{% progress_bar %}
 		<input type="submit" />
 	</form>
-	<div id="result"></div>
 
 </body>
 
