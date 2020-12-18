@@ -1,8 +1,9 @@
-#http://bixly.com/blog/accept-only-specific-file-types-in-django-file-upload/
+# http://bixly.com/blog/accept-only-specific-file-types-in-django-file-upload/
 from django.db.models import FileField
 from django.forms import forms
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
+
 
 class ContentTypeRestrictedFileField(FileField):
     """
@@ -20,6 +21,7 @@ class ContentTypeRestrictedFileField(FileField):
             250MB - 214958080
             500MB - 429916160
     """
+
     def __init__(self,  content_types=[], max_upload_size=429916160, **kwargs):
         self.content_types = content_types
         self.max_upload_size = max_upload_size
@@ -27,7 +29,8 @@ class ContentTypeRestrictedFileField(FileField):
         super(ContentTypeRestrictedFileField, self).__init__(**kwargs)
 
     def clean(self, *args, **kwargs):
-        data = super(ContentTypeRestrictedFileField, self).clean(*args, **kwargs)
+        data = super(ContentTypeRestrictedFileField,
+                     self).clean(*args, **kwargs)
         file = data.file
         try:
             content_type = file.content_type
@@ -36,7 +39,8 @@ class ContentTypeRestrictedFileField(FileField):
                     raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s')
                                                 % (filesizeformat(self.max_upload_size), filesizeformat(file._size)))
             else:
-                raise forms.ValidationError(_('Filetype %s not supported.'%content_type))
+                raise forms.ValidationError(
+                    _('Filetype %s not supported.' % content_type))
         except AttributeError:
             pass
 
