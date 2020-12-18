@@ -1,11 +1,11 @@
-{% load progress_bar %}
+{% comment %} {% load progress_bar %} {% endcomment %}
 {% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
     <script type="text/javascript" src="{% static "js/jquery-2.1.1.min.js" %}"></script>
-    {% progress_bar_media %}
+    {% comment %} {% progress_bar_media %} {% endcomment %}
     <script>
     function fun_sucs(data) {
     	if (data['success']) {
@@ -23,7 +23,7 @@
 
 	<form id="abc" action="" enctype="multipart/form-data" method="post" data-success="fun_sucs">
 		{{ form }}
-		{% progress_bar %}
+		{% comment %} {% progress_bar %} {% endcomment %}
 		<input type="submit" />
 	</form>
 
