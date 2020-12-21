@@ -1,11 +1,12 @@
 # coding:utf-8
-from os import listdir
+from os import listdir, environ
 from os.path import dirname, join, splitext, exists
 import configparser
 
+
 PACKAGE_DIR = "package"
 UPLOAD_DIR = "upload"
-EXE_DIR = join(dirname(__file__), "exe")
+EXE_DIR = environ.get('DATA_DIR', join(dirname(__file__), "exe"))
 
 PROFILES_DIR = join(EXE_DIR, "profiles")
 CERTS = {}

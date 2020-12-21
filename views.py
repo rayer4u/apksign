@@ -14,7 +14,7 @@ from uuid import uuid4
 
 import os
 import json
-from urllib.parse import urlparse
+from urllib.parse import urljoin
 import subprocess
 import apksign
 
@@ -58,7 +58,7 @@ def upload(request):
             os.chdir(apksign.EXE_DIR)
             cmd_sign = 'jarsigner -keystore %s %s -signedjar %s %s %s' % \
                 (join(apksign.PROFILES_DIR, store),
-                 ''.join(' -'+key+' '+str(value)
+                 ''.join(' -' + key + ' ' + str(value)
                          for key, value in apksign.CERTS[store].items()),
                  signed_unalignedjar,
                  unsignedjar,
@@ -92,7 +92,7 @@ def upload(request):
 
             current_uri = '%s://%s' % ('https' if request.is_secure() else 'http',
                                        request.get_host())
-            result = {"url": urlparse.urljoin(
+            result = {"url": urljoin(
                 current_uri, join(settings.MEDIA_URL, o.signed.url))}
         else:
             result = {"err": dict(form.errors)}
